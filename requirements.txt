@@ -1,0 +1,7 @@
+matplotlib
+statsmodels
+pandas
+numpy
+PIL
+streamlit_pandas_profiling
+streamlit
