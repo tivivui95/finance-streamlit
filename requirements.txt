@@ -5,3 +5,4 @@ numpy
 pillow
 streamlit_pandas_profiling
 streamlit
+scikit-learn
