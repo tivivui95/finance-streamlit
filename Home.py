@@ -90,7 +90,7 @@ st.dataframe(LRresult.tables[0], use_container_width=True)
 st.dataframe(LRresult.tables[1], use_container_width=True)
 st.dataframe(LRresult.tables[2], use_container_width=True)
 
-st.markdown("Trong các phương pháp tính hệ tương quan của dữ liệu, độ đo log-likelihood dùng để tính mối tương quan trong tổng số tần suất quan sát được trên tần suất dữ liệu của giả định cho trước. Với mức độ log-likelihood cao sẽ thể hiện được sự tương quan mạnh mẽ của 2 dữa liệu và ngược lại. Từ bản số liệu trên ta thấy được 2 thuộc tính xuất và nhập khẩu có xu hướng không ảnh hưởng tới nhau và là 2 thuộc tính độc lập.")
+st.markdown("Trong các phương pháp tính hệ tương quan của dữ liệu, độ đo log-likelihood dùng để tính mối tương quan trong tổng số tần suất quan sát được trên tần suất dữ liệu của giả định cho trước. Với mức độ log-likelihood cao sẽ thể hiện được sự tương quan mạnh mẽ của 2 dữ liệu và ngược lại. Từ bản số liệu trên ta thấy được 2 thuộc tính xuất và nhập khẩu có xu hướng không ảnh hưởng tới nhau và là 2 thuộc tính độc lập.")
 st.markdown("Tương tự log-likelihood, F-statistic sử dụng hệ thống phân tích ANOVA, được sử dụng để đánh giá ý nghĩa tổng thể của mối quan hệ giữa dự đoán và thực tế. Và ta có thể thấy tỷ lệ tương quan của Prob(F-statistic) là một giá trị rất nhỏ nên càng thể hiện 2 thuộc tính này độc lập với nhau.")
 
 st.markdown("Kiểm tra bằng phương pháp chi bình phương với **GDP growth (annual %)**, ta có các kết quả sau:")
@@ -110,9 +110,9 @@ for i in range(len(result)):
   pVal = result[i]['p-value']
   st.text(f'{i+1}: {feature} [chi2 = {round(chi2)}, p-value = {round(pVal, 2)}]')
 
-st.markdown("Với phương pháp chi-square, ta cho ra dc 9 thuộc tính có chi2-score là 462, thuộc tính này thể hiện mối tương quan của chính nó với giá trị label hiện tại (gdp growth), kèm theo là giá trị p-value=0.24, nó thể hiện rằng giả định giá trị chi2-score vẫn xảy ra xác suất ngẫu nhiên. Điều tương tự với các thuộc tính khác, mang giá trị chi2-score=0 và p-value=1, tức là giả định (hypothesis) này là luôn xẩy ra 1 cách ngẫu nhiên giữa thuộc tính label và thuộc tính đang được xét.")
+st.markdown("Với phương pháp chi-square, ta cho ra được 9 thuộc tính có chi2-score là *462*, thuộc tính này thể hiện mối tương quan của chính nó với giá trị label hiện tại (`GDP growth`), kèm theo là giá trị `p-value=0.24`, nó thể hiện rằng giả định giá trị chi2-score vẫn xảy ra xác suất ngẫu nhiên. Điều tương tự với các thuộc tính khác, mang giá trị `chi2-score=0` và `p-value=1`, tức là giả định (hypothesis) này là luôn xảy ra 1 cách ngẫu nhiên giữa thuộc tính label và thuộc tính đang được xét.")
 
-st.markdown("Từ kết quả trên, chúng tôi xác định rằng có 9 tính năng hàng đầu thể hiện sự liên kết nhiều nhất với Gdp. Vì theo mô hình ta quan sát dc `Gdp per capita` có xu hướng overfit với label `Gdp` nên ta sẽ loại bỏ thuộc tính này")
+st.markdown("Từ kết quả trên, chúng tôi xác định rằng có 9 tính năng hàng đầu thể hiện sự liên kết nhiều nhất với Gdp. Vì theo mô hình ta quan sát được `Gdp per capita` có xu hướng overfit với label `GDP` nên ta sẽ loại bỏ thuộc tính này")
 st.markdown("Đây là những dòng dữ liệu mẫu sau khi lược bỏ:")
 features = [result[i]['feature'] for i in range(9)]
 features.remove('GDP (current US$)')
@@ -122,7 +122,7 @@ for col in vn_df.columns:
   vn_df = vn_df.drop(col, axis=1)
 st.dataframe(vn_df.head(5), use_container_width=True)
 
-st.markdown("Sau khi sơ lượt Linear Regression thì ta có những tầm nhìn là với hầu hết thuộc tính thì ta quan sát dc Gdp tăng theo hệ số của Linear là dương, và ngược lại.")
+st.markdown("Sau khi sơ lượt Linear Regression thì ta có những tầm nhìn là với hầu hết thuộc tính thì ta quan sát được GDP tăng theo hệ số của Linear là dương, và ngược lại.")
 from sklearn.linear_model import LinearRegression
 negative_slope = []
 positive_slope = []
@@ -184,10 +184,10 @@ st.image(img2, caption="Dự đoán tăng trưởng GDP năm 2022-2028 bằng De
 
 img3 = Image.open('./images/img3.png')
 st.image(img3, caption="Dự đoán tăng trưởng GDP năm 2022-2028 bằng Conv")
-st.markdown("Dựa trên kết quả ta thấy những năm tiếp theo sẽ tăng trưởng mạnh")
+st.markdown("Dựa trên kết quả ta thấy những năm tiếp theo sẽ tăng trưởng mạnh trở lại.")
 
 st.markdown("### Đề xuất giải pháp")
-st.markdown("dựa trên Forecasting bằng 3 phương pháp khác nhau, ta cho ra được các dự đoán tăng trưởng trong giai đoạn các năm từ cuối năm 2021 và 2023 trở đi. Trên thực tế sự phỏng đoán này hoàn toàn có cơ sở, khi mà thế giới trải qua giai đoạn thoái hóa kinh tế do dịch bệnh và đang trong đà phát triển trở lại. Dựa vào các thuộc tính mà chúng ta đã thu thập tính toán, có thể cho ra một số đề xuất trên dữ liệu này như sau:")
-st.markdown(" - Như ta tính toán theo thống kê, nguồn đầu tư trực tiếp từ nước ngoài (FDI) có ảnh hưởng mạnh tới sự tăng trưởng GDP này, nên ta nên tập trung vào việc thúc đẩy thương mại và hợp tác quốc tế. Cụ thể như vi khuyến khích thương mại quốc tế, giảm rào cản thương mại và thúc đẩy hợp tác giữa các quốc gia có thể kích thích tăng trưởng kinh tế.")
+st.markdown("Dựa trên Forecasting bằng 3 phương pháp khác nhau, ta cho ra được các dự đoán tăng trưởng trong giai đoạn các năm từ cuối năm 2021 và 2023 trở đi. Trên thực tế sự phỏng đoán này hoàn toàn có cơ sở, khi mà thế giới trải qua giai đoạn thoái hóa kinh tế do dịch bệnh và đang trong đà phát triển trở lại. Dựa vào các thuộc tính mà chúng ta đã thu thập tính toán, có thể cho ra một số đề xuất trên dữ liệu này như sau:")
+st.markdown(" - Như ta tính toán theo thống kê, nguồn đầu tư trực tiếp từ nước ngoài (FDI) có ảnh hưởng mạnh tới sự tăng trưởng GDP này, nên ta nên tập trung vào việc thúc đẩy thương mại và hợp tác quốc tế. Cụ thể như việc khuyến khích thương mại quốc tế, giảm rào cản thương mại và thúc đẩy hợp tác giữa các quốc gia có thể kích thích tăng trưởng kinh tế.")
 st.markdown(" - Tương tự với giá trị xuất nhập khẩu (Imports and Exports), một giải pháp được đề xuất là đa dạng hóa thị trường xuất nhập khẩu. Nơi mà các doanh nghiệp nên tìm hiểu và khai thác các thị trường xuất khẩu mới để giảm sự phụ thuộc vào một thị trường duy nhất, sự đa dạng hóa này giúp giảm thiểu rủi ro liên quan đến biến động kinh tế và các rào cản thương mại ở các khu vực cụ thể.")
 toc.generate()
