@@ -2,6 +2,6 @@ matplotlib
 statsmodels
 pandas
 numpy
-PIL
+pillow
 streamlit_pandas_profiling
 streamlit
